@@ -4,8 +4,20 @@ import {
   REMOVE_PRODUCT,
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_FAILURE,
-  GET_PRODUCTS_SUCCESS
+  GET_PRODUCTS_SUCCESS,
+  ADD_TEXT_BOX,
+  ADD_RECTANGLE,
+  UPDATE_RECTANGLE_POSITION,
+  UPDATE_TEXTBOX_POSITION,
+  UPDATE_RECTANGLE_SIZE,
+  UPDATE_TEXTBOX_SIZE,
+  SET_INSPECTOR,
+  UPDATE_RECTANGLE
 } from '../constants/ProductTypes';
+
+function getRandomInt() {
+  return Math.floor(Math.random() * Math.floor(100000));
+}
 
 export function addProduct(product) {
   return {
@@ -32,8 +44,72 @@ export function getProducts() {
   };
 }
 
+export function addTextBox() {
+  return {
+    type: ADD_TEXT_BOX,
+    payload: { id: getRandomInt(), name: 'Text Box', x: 0, y: 0, width: 250, height: 250 }
+  };
+}
+
+export function addRectangle() {
+  return {
+    type: ADD_RECTANGLE,
+    payload: { id: getRandomInt(), name: 'Rectangle', x: 0, y: 0, width: 250, height: 250 }
+  };
+}
+
+export function updateRectanglePosition(id, x, y) {
+  return {
+    type: UPDATE_RECTANGLE_POSITION,
+    payload: { id, x, y }
+  };
+}
+
+export function updateTextboxPosition(id, x, y) {
+  return {
+    type: UPDATE_TEXTBOX_POSITION,
+    payload: { id, x, y }
+  };
+}
+
+export function updateRectangleSize(id, width, height) {
+  return {
+    type: UPDATE_RECTANGLE_SIZE,
+    payload: { id, width, height }
+  };
+}
+
+export function updateTextboxSize(id, width, height) {
+  return {
+    type: UPDATE_TEXTBOX_SIZE,
+    payload: { id, width, height }
+  };
+}
+
+export function setInspector(type, object) {
+  return {
+    type: SET_INSPECTOR,
+    payload: { type, object }
+  };
+}
+
+export function updateRectangle(rectangle) {
+  return {
+    type: UPDATE_RECTANGLE,
+    payload: rectangle
+  };
+}
+
 export default {
   addProduct,
   removeProduct,
-  getProducts
+  getProducts,
+  addTextBox,
+  addRectangle,
+  updateRectanglePosition,
+  updateTextboxPosition,
+  updateRectangleSize,
+  updateTextboxSize,
+  setInspector,
+  updateRectangle
 };
