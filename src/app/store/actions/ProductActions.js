@@ -12,7 +12,8 @@ import {
   UPDATE_RECTANGLE_SIZE,
   UPDATE_TEXTBOX_SIZE,
   SET_INSPECTOR,
-  UPDATE_RECTANGLE
+  UPDATE_RECTANGLE,
+  UPDATE_TEXTBOX
 } from '../constants/ProductTypes';
 
 function getRandomInt() {
@@ -47,7 +48,16 @@ export function getProducts() {
 export function addTextBox() {
   return {
     type: ADD_TEXT_BOX,
-    payload: { id: getRandomInt(), name: 'Text Box', x: 0, y: 0, width: 250, height: 250 }
+    payload: {
+      id: getRandomInt(),
+      name: 'Text Box',
+      x: 0,
+      y: 0,
+      width: 250,
+      height: 250,
+      fontSize: 12,
+      fontType: ''
+    }
   };
 }
 
@@ -100,6 +110,13 @@ export function updateRectangle(rectangle) {
   };
 }
 
+export function updateTextbox(textbox) {
+  return {
+    type: UPDATE_TEXTBOX,
+    payload: textbox
+  };
+}
+
 export default {
   addProduct,
   removeProduct,
@@ -111,5 +128,6 @@ export default {
   updateRectangleSize,
   updateTextboxSize,
   setInspector,
-  updateRectangle
+  updateRectangle,
+  updateTextbox
 };

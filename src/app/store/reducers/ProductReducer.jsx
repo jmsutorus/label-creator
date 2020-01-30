@@ -10,7 +10,8 @@ import {
   UPDATE_RECTANGLE_SIZE,
   UPDATE_TEXTBOX_SIZE,
   SET_INSPECTOR,
-  UPDATE_RECTANGLE
+  UPDATE_RECTANGLE,
+  UPDATE_TEXTBOX
 } from '../constants/ProductTypes';
 
 export const initialState = {
@@ -118,6 +119,18 @@ function ProductReducer(state = initialState, action) {
         inspectorType: 'rectangle',
         inspector: action.payload,
         rectangles: state.rectangles.map(item => {
+          if (item.id === action.payload.id) {
+            return action.payload;
+          }
+          return item;
+        })
+      };
+    case UPDATE_TEXTBOX:
+      return {
+        ...state,
+        inspectorType: 'textBox',
+        inspector: action.payload,
+        rectangles: state.textBoxes.map(item => {
           if (item.id === action.payload.id) {
             return action.payload;
           }
