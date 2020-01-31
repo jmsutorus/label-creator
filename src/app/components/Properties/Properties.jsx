@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import RectangleForm from '../RectangleForm';
-import Barcode from '../Barcode';
+import BarcodeForm from '../BarcodeForm';
 import TextboxForm from '../TextboxForm';
 
 function getProperties(type, inspector) {
@@ -9,7 +9,7 @@ function getProperties(type, inspector) {
     case 'textBox':
       return <TextboxForm textBox={inspector} />;
     case 'barcode':
-      return <Barcode barcode={inspector} />;
+      return <BarcodeForm barcode={inspector} />;
     case 'rectangle':
       return <RectangleForm rectangle={inspector} />;
     default:

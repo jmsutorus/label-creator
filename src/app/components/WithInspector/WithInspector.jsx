@@ -4,16 +4,9 @@ import { useDispatch } from 'react-redux';
 import { setInspector } from '../../store/actions/ProductActions';
 
 const propTypes = {
-  type: PropTypes.string.isRequired,
-  rectangle: PropTypes.shape({
+  object: PropTypes.shape({
     name: PropTypes.string,
-    x: PropTypes.number,
-    y: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number
-  }),
-  textBox: PropTypes.shape({
-    name: PropTypes.string,
+    type: PropTypes.string,
     text: PropTypes.string,
     x: PropTypes.number,
     y: PropTypes.number,
@@ -21,33 +14,32 @@ const propTypes = {
     fontType: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number
-  }),
+  }).isRequired,
   children: PropTypes.node
 };
 
 const defaultProps = {
-  rectangle: null,
-  textBox: null,
   children: null
 };
 
-function WithInspector({ type, rectangle, textBox, children }) {
+function WithInspector({ object, children }) {
   const dispatch = useDispatch();
 
   const updateInspector = () => {
-    switch (type) {
-      case 'textBox': {
-        dispatch(setInspector('textBox', textBox));
-        break;
-      }
-      case 'rectangle': {
-        dispatch(setInspector('rectangle', rectangle));
-        break;
-      }
-      default: {
-        console.log('bad');
-      }
-    }
+    dispatch(setInspector(object));
+    // switch (type) {
+    //   case 'textBox': {
+    //     dispatch(setInspector('textBox', textBox));
+    //     break;
+    //   }
+    //   case 'rectangle': {
+    //     dispatch(setInspector('rectangle', rectangle));
+    //     break;
+    //   }
+    //   default: {
+    //     console.log('bad');
+    //   }
+    // }
   };
 
   return (
@@ -55,7 +47,7 @@ function WithInspector({ type, rectangle, textBox, children }) {
       type="button"
       onClick={() => updateInspector()}
       className=""
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%', height: '100%', border: 'none' }}
     >
       {children}
     </button>

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { updateObject } from '../../store/actions/ProductActions';
 
 const propTypes = {
   textBox: PropTypes.shape({
@@ -17,25 +19,32 @@ const propTypes = {
 const defaultProps = {};
 
 function Textbox({ textBox }) {
+  const dispatch = useDispatch();
+
+  const handleChange = value => {
+    const newTextbox = {
+      ...textBox,
+      name: value
+    };
+    dispatch(updateObject(newTextbox));
+  };
+
   return (
     <div className="">
-      <div>This is a textbox</div>
-      <div>
-        width:
-        {textBox.width}
-      </div>
-      <div>
-        height:
-        {textBox.height}
-      </div>
-      <div>
-        x:
-        {textBox.x.toFixed(0)}
-      </div>
-      <div>
-        y:
-        {textBox.y.toFixed(0)}
-      </div>
+      <textarea
+        style={{
+          fontSize: textBox.fontSize,
+          width: textBox.width,
+          height: textBox.height,
+          position: 'absolute',
+          top: 0,
+          left: 0
+        }}
+        value={textBox.name}
+        type="text"
+        id="textBox Name"
+        onChange={e => handleChange(e.target.value)}
+      />
     </div>
   );
 }

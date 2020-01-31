@@ -4,29 +4,15 @@ import PropTypes from 'prop-types';
 import { Rnd } from 'react-rnd';
 import '../../styles/styles.css';
 import '../../styles/Resizable.css';
-import {
-  updateTextboxPosition,
-  updateRectanglePosition,
-  updateTextboxSize,
-  updateRectangleSize
-} from '../../store/actions/ProductActions';
-
-const style = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: 'solid 1px #ddd',
-  background: '#f0f0f0',
-  color: 'black'
-};
+import { updatePosition, updateSize } from '../../store/actions/ProductActions';
 
 const propTypes = {
-  type: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  zIndex: PropTypes.number.isRequired,
   children: PropTypes.node
 };
 
@@ -34,33 +20,25 @@ const defaultProps = {
   children: null
 };
 
-function UpdateDraggable({ type, id, x, y, width, height, children }) {
+function UpdateDraggable({ id, x, y, width, height, zIndex, children }) {
   const dispatch = useDispatch();
 
+  const style = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'none',
+    background: '#f0f0f0',
+    color: 'black',
+    zIndex
+  };
+
   const updatePositionState = (newX, newY) => {
-    switch (type) {
-      case 'textBox':
-        dispatch(updateTextboxPosition(id, newX, newY));
-        break;
-      case 'rectangle':
-        dispatch(updateRectanglePosition(id, newX, newY));
-        break;
-      default:
-        console.log('bad');
-    }
+    dispatch(updatePosition(id, newX, newY));
   };
 
   const updateSizeState = (newWidth, newHeight) => {
-    switch (type) {
-      case 'textBox':
-        dispatch(updateTextboxSize(id, newWidth, newHeight));
-        break;
-      case 'rectangle':
-        dispatch(updateRectangleSize(id, newWidth, newHeight));
-        break;
-      default:
-        console.log('bad');
-    }
+    dispatch(updateSize(id, newWidth, newHeight));
   };
 
   return (
@@ -76,6 +54,7 @@ function UpdateDraggable({ type, id, x, y, width, height, children }) {
         updatePositionState(position.x, position.y);
       }}
       bounds="parent"
+      enableUserSelectHack={false}
     >
       {children}
     </Rnd>

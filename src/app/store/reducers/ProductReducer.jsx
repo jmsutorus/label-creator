@@ -3,15 +3,11 @@ import {
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_FAILURE,
   GET_PRODUCTS_SUCCESS,
-  ADD_TEXT_BOX,
-  ADD_RECTANGLE,
-  UPDATE_RECTANGLE_POSITION,
-  UPDATE_TEXTBOX_POSITION,
-  UPDATE_RECTANGLE_SIZE,
-  UPDATE_TEXTBOX_SIZE,
   SET_INSPECTOR,
-  UPDATE_RECTANGLE,
-  UPDATE_TEXTBOX
+  UPDATE_OBJECT,
+  UPDATE_SIZE,
+  UPDATE_POSITION,
+  ADD_OBJECT
 } from '../constants/ProductTypes';
 
 export const initialState = {
@@ -20,6 +16,7 @@ export const initialState = {
   productResultsError: null,
   textBoxes: [],
   rectangles: [],
+  objects: [],
   inspectorType: null,
   inspector: {}
 };
@@ -53,86 +50,53 @@ function ProductReducer(state = initialState, action) {
         loadingProductResults: false,
         productResults: action.payload
       };
-    case ADD_TEXT_BOX:
+    case ADD_OBJECT:
       return {
         ...state,
-        textBoxes: [...state.textBoxes, action.payload],
-        inspectorType: 'textBox',
+        objects: [
+          ...state.objects,
+          {
+            ...action.payload,
+            id: state.objects.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+          }
+        ],
+        inspectorType: action.payload.type,
         inspector: action.payload
-      };
-    case ADD_RECTANGLE:
-      return {
-        ...state,
-        rectangles: [...state.rectangles, action.payload],
-        inspectorType: 'rectangle',
-        inspector: action.payload
-      };
-    case UPDATE_RECTANGLE_POSITION:
-      return {
-        ...state,
-        rectangles: state.rectangles.map(item => {
-          if (item.id === action.payload.id) {
-            return { ...item, x: action.payload.x, y: action.payload.y };
-          }
-          return item;
-        })
-      };
-    case UPDATE_TEXTBOX_POSITION:
-      return {
-        ...state,
-        textBoxes: state.textBoxes.map(item => {
-          if (item.id === action.payload.id) {
-            return { ...item, x: action.payload.x, y: action.payload.y };
-          }
-          return item;
-        })
-      };
-    case UPDATE_RECTANGLE_SIZE:
-      return {
-        ...state,
-        rectangles: state.rectangles.map(item => {
-          if (item.id === action.payload.id) {
-            return { ...item, width: action.payload.width, height: action.payload.height };
-          }
-          return item;
-        })
-      };
-    case UPDATE_TEXTBOX_SIZE:
-      return {
-        ...state,
-        textBoxes: state.textBoxes.map(item => {
-          if (item.id === action.payload.id) {
-            return { ...item, width: action.payload.width, height: action.payload.height };
-          }
-          return item;
-        })
       };
     case SET_INSPECTOR:
       return {
         ...state,
         inspectorType: action.payload.type,
-        inspector: action.payload.object
+        inspector: action.payload
       };
-    case UPDATE_RECTANGLE:
+    case UPDATE_OBJECT:
       return {
         ...state,
-        inspectorType: 'rectangle',
+        inspectorType: action.payload.type,
         inspector: action.payload,
-        rectangles: state.rectangles.map(item => {
+        objects: state.objects.map(item => {
           if (item.id === action.payload.id) {
             return action.payload;
           }
           return item;
         })
       };
-    case UPDATE_TEXTBOX:
+    case UPDATE_POSITION:
       return {
         ...state,
-        inspectorType: 'textBox',
-        inspector: action.payload,
-        rectangles: state.textBoxes.map(item => {
+        objects: state.objects.map(item => {
           if (item.id === action.payload.id) {
-            return action.payload;
+            return { ...item, x: action.payload.x, y: action.payload.y };
+          }
+          return item;
+        })
+      };
+    case UPDATE_SIZE:
+      return {
+        ...state,
+        objects: state.objects.map(item => {
+          if (item.id === action.payload.id) {
+            return { ...item, width: action.payload.width, height: action.payload.height };
           }
           return item;
         })

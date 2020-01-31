@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
-import { addRectangle, addTextBox } from '../../store/actions/ProductActions';
+import { addRectangle, addTextBox, addBarcode } from '../../store/actions/ProductActions';
 
 const style = {
   border: '1px dashed gray',
@@ -31,7 +31,7 @@ const handleDropResult = (dispatch, item) => {
       break;
     }
     case 'barcode': {
-      dispatch(addRectangle());
+      dispatch(addBarcode());
       break;
     }
     default: {

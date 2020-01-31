@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { updateObject } from '../../store/actions/ProductActions';
 
 const propTypes = {
-  textBox: PropTypes.shape({
+  barcode: PropTypes.shape({
     name: PropTypes.string,
     text: PropTypes.string,
     x: PropTypes.number,
@@ -18,7 +18,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-function TextboxForm({ textBox }) {
+function BarcodeForm({ barcode }) {
   const dispatch = useDispatch();
 
   const handleChange = (target, value) => {
@@ -27,7 +27,7 @@ function TextboxForm({ textBox }) {
       transformValue = parseInt(value, 10);
     }
     const newTextbox = {
-      ...textBox,
+      ...barcode,
       [target]: transformValue
     };
     dispatch(updateObject(newTextbox));
@@ -40,7 +40,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="name">
             <span id="name">Name</span>
             <input
-              value={textBox.name}
+              value={barcode.name}
               type="text"
               id="name"
               onChange={e => handleChange('name', e.target.value)}
@@ -51,7 +51,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="x">
             <span id="x">X</span>
             <input
-              value={textBox.x}
+              value={barcode.x}
               type="number"
               id="x"
               onChange={e => handleChange('x', e.target.value)}
@@ -62,7 +62,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="y">
             <span id="y">y</span>
             <input
-              value={textBox.y}
+              value={barcode.y}
               type="number"
               id="y"
               onChange={e => handleChange('y', e.target.value)}
@@ -73,7 +73,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="width">
             <span id="width">Width</span>
             <input
-              value={textBox.width}
+              value={barcode.width}
               type="number"
               id="width"
               onChange={e => handleChange('width', e.target.value)}
@@ -84,7 +84,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="height">
             <span id="height">Height</span>
             <input
-              value={textBox.height}
+              value={barcode.height}
               type="number"
               id="height"
               onChange={e => handleChange('height', e.target.value)}
@@ -95,7 +95,7 @@ function TextboxForm({ textBox }) {
           <label htmlFor="fontSize">
             <span id="fontSize">Font Size</span>
             <input
-              value={textBox.fontSize}
+              value={barcode.fontSize}
               type="number"
               id="fontSize"
               onChange={e => handleChange('fontSize', e.target.value)}
@@ -107,7 +107,7 @@ function TextboxForm({ textBox }) {
   );
 }
 
-TextboxForm.propTypes = propTypes;
-TextboxForm.defaultProps = defaultProps;
+BarcodeForm.propTypes = propTypes;
+BarcodeForm.defaultProps = defaultProps;
 
-export default TextboxForm;
+export default BarcodeForm;

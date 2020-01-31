@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateRectangle } from '../../store/actions/ProductActions';
+import { updateObject } from '../../store/actions/ProductActions';
 
 const propTypes = {
   rectangle: PropTypes.shape({
@@ -28,7 +28,7 @@ function RectangleForm({ rectangle }) {
       ...rectangle,
       [target]: transformValue
     };
-    dispatch(updateRectangle(newRect));
+    dispatch(updateObject(newRect));
   };
 
   return (
