@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import RootReducer from './TodoReducer';
-import ProductReducer from './ProductReducer';
+import LabelReducer from './LabelReducer';
+import CanvasReducer from './CanvasReducer';
 
 const reducers = combineReducers({
   RootReducer,
-  ProductReducer
+  LabelReducer,
+  CanvasReducer
 });
 
 export default reducers;

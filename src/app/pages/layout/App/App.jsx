@@ -5,12 +5,12 @@ import Backend from 'react-dnd-html5-backend';
 import Header from '../Header';
 import Footer from '../Footer';
 import './App.scss';
-import { getProducts } from '../../../store/actions/ProductActions';
+import { getLabels } from '../../../store/actions/LabelActions';
 import AppProvider from '../../../contexts/AppProvider';
-import Products from '../../../components/Products';
-import Properties from '../../../components/Properties';
 import Tools from '../../../components/Tools';
 import Canvas from '../../../components/Canvas';
+import LabelsList from '../../../components/LabelsList';
+import LabelForms from './LabelForms';
 
 const propTypes = {
   store: PropTypes.shape({
@@ -23,20 +23,24 @@ const propTypes = {
 const defaultProps = {};
 
 function App({ store }) {
-  store.dispatch(getProducts());
+  store.dispatch(getLabels());
   return (
     <AppProvider store={store}>
       <StrictMode>
-        <Header />
-        <main>
-          <DndProvider backend={Backend}>
-            <Products />
-            <Properties />
-            <Tools />
-            <Canvas />
-          </DndProvider>
-        </main>
-        <Footer />
+        <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Header />
+          <main style={{ flex: 1, overflow: 'auto' }}>
+            <DndProvider backend={Backend}>
+              <Tools />
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <Canvas />
+                <LabelForms />
+              </div>
+              <LabelsList />
+            </DndProvider>
+          </main>
+          <Footer />
+        </div>
       </StrictMode>
     </AppProvider>
   );

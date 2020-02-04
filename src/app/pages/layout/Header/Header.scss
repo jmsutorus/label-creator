@@ -1,4 +1,52 @@
 .header {
   width: 100%;
-  background-color: blue;
+  overflow: hidden;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 2px 9px -3px grey;
+  // position: fixed;
+  margin-bottom: 7px;
+  z-index: 1000;
+}
+
+.nav-wrapper {
+  margin-top: 12px;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.path-digital {
+  fill: #c42f34;
+  transition: fill 250ms ease 250ms;
+}
+
+.options-button-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  color: #585858;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.creator-button {
+  font-size: 18px;
+  font-weight: 600;
 }

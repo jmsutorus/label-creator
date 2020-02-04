@@ -1,0 +1,12 @@
+.form-label {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  .form-name {
+    width: 75px;
+  }
+  .form-input {
+    flex: 1;
+  }
+}

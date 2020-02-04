@@ -1,30 +1,21 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { useSelector } from 'react-redux';
-import '../../styles/styles.css';
 import '../../styles/Resizable.css';
 import UpdateDraggable from '../UpdateDraggable';
-import Rectangle from '../Rectangle';
-import Textbox from '../Textbox';
+import Rectangle from '../LabelObjects/Rectangle';
+import Textbox from '../LabelObjects/Textbox';
 import WithInspector from '../WithInspector';
-import Barcode from '../Barcode/Barcode';
-
-const style = {
-  height: '1000px',
-  width: '1000px',
-  marginBottom: '1.5rem',
-  color: 'white',
-  padding: '1rem',
-  textAlign: 'center',
-  fontSize: '1rem',
-  lineHeight: 'normal',
-  float: 'left',
-  position: 'relative',
-  border: '1px solid grey'
-};
+import Barcode from '../LabelObjects/Barcode';
+import './Canvas.scss';
 
 function Canvas() {
-  const objects = useSelector(state => state.ProductReducer.objects);
+  const canvas = useSelector(state => state.CanvasReducer.canvas);
+
+  const style = {
+    height: `${canvas.height}px`,
+    width: `${canvas.width}px`
+  };
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: 'dragBox',
@@ -42,38 +33,61 @@ function Canvas() {
     backgroundColor = 'darkkhaki';
   }
 
-  const getObject = object => {
-    switch (object.type) {
-      case 'textBox': {
-        return <Textbox textBox={object} />;
-      }
-      case 'rectangle': {
-        return <Rectangle rectangle={object} />;
-      }
-      case 'barcode': {
-        return <Barcode barcode={object} />;
-      }
-      default: {
-        return <Textbox textBox={object} />;
-      }
-    }
-  };
-
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }}>
-      <div style={{ height: '1000px', width: '1000px', padding: '10px' }}>
-        {objects &&
-          objects.map(object => (
+    <div
+      title="canvas"
+      style={{ flex: 1, height: '600px', backgroundColor: '#E8E8E8', position: 'relative' }}
+    >
+      <div ref={drop} style={{ ...style, backgroundColor }} className="canvas">
+        {canvas.textboxes &&
+          canvas.textboxes.map(object => (
             <UpdateDraggable
               id={object.id}
               x={object.x}
               y={object.y}
               width={object.width}
               height={object.height}
-              zIndex={object.zIndex}
+              zIndex={600}
+              type="textboxes"
               key={object.id}
             >
-              <WithInspector object={object}>{getObject(object)}</WithInspector>
+              <WithInspector object={object} type="textbox">
+                <Textbox textBox={object} />
+              </WithInspector>
+            </UpdateDraggable>
+          ))}
+        {canvas.rectangles &&
+          canvas.rectangles.map(object => (
+            <UpdateDraggable
+              id={object.id}
+              x={object.x}
+              y={object.y}
+              width={object.width}
+              height={object.height}
+              zIndex={400}
+              type="rectangles"
+              key={object.id}
+            >
+              <WithInspector object={object} type="rectangle">
+                <Rectangle rectangle={object} />
+              </WithInspector>
+            </UpdateDraggable>
+          ))}
+        {canvas.barcodes &&
+          canvas.barcodes.map(object => (
+            <UpdateDraggable
+              id={object.id}
+              x={object.x}
+              y={object.y}
+              width={object.width}
+              height={object.height}
+              zIndex={500}
+              type="barcodes"
+              key={object.id}
+            >
+              <WithInspector object={object} type="barcode">
+                <Barcode barcode={object} />
+              </WithInspector>
             </UpdateDraggable>
           ))}
       </div>

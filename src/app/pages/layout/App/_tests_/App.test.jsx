@@ -9,8 +9,12 @@ test('renders header and footer', () => {
   const { getByTitle } = render(<App store={store} />);
   const headerElement = getByTitle(/header/i);
   const footerElement = getByTitle(/footer/i);
-  const productsElement = getByTitle(/products/i);
+  const toolsElement = getByTitle(/tools/i);
+  const canvasElement = getByTitle(/canvas/i);
+  const labelFormsElement = getByTitle(/labelForms/i);
   expect(headerElement).toBeInTheDocument();
   expect(footerElement).toBeInTheDocument();
-  expect(productsElement).toBeInTheDocument();
+  expect(toolsElement).toBeInTheDocument();
+  expect(canvasElement).toBeInTheDocument();
+  expect(labelFormsElement).toBeInTheDocument();
 });

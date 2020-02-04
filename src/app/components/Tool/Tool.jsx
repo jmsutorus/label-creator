@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import PropTypes from 'prop-types';
-import { addRectangle, addTextBox, addBarcode } from '../../store/actions/ProductActions';
+import { addRectangle, addTextBox, addBarcode } from '../../store/actions/CanvasActions';
 
 const style = {
   border: '1px dashed gray',
@@ -56,7 +56,12 @@ function Tool({ name }) {
   });
   const opacity = isDragging ? 0.4 : 1;
   return (
-    <div className="" ref={drag} style={{ ...style, opacity }}>
+    <div
+      className=""
+      ref={drag}
+      style={{ ...style, opacity }}
+      onDoubleClick={() => handleDropResult(dispatch, { name })}
+    >
       {name}
     </div>
   );

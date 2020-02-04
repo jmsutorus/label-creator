@@ -2,9 +2,15 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Rnd } from 'react-rnd';
-import '../../styles/styles.css';
 import '../../styles/Resizable.css';
-import { updatePosition, updateSize } from '../../store/actions/ProductActions';
+import {
+  updateRectanglePosition,
+  updateBarcodePosition,
+  updateTextboxPosition,
+  updateRectangleSize,
+  updateBarcodeSize,
+  updateTextboxSize
+} from '../../store/actions/CanvasActions';
 
 const propTypes = {
   id: PropTypes.number.isRequired,
@@ -13,6 +19,7 @@ const propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   zIndex: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
   children: PropTypes.node
 };
 
@@ -20,7 +27,7 @@ const defaultProps = {
   children: null
 };
 
-function UpdateDraggable({ id, x, y, width, height, zIndex, children }) {
+function UpdateDraggable({ id, x, y, width, height, zIndex, type, children }) {
   const dispatch = useDispatch();
 
   const style = {
@@ -28,17 +35,48 @@ function UpdateDraggable({ id, x, y, width, height, zIndex, children }) {
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
-    background: '#f0f0f0',
     color: 'black',
     zIndex
   };
 
   const updatePositionState = (newX, newY) => {
-    dispatch(updatePosition(id, newX, newY));
+    switch (type) {
+      case 'textboxes': {
+        dispatch(updateTextboxPosition(id, newX, newY));
+        break;
+      }
+      case 'barcodes': {
+        dispatch(updateBarcodePosition(id, newX, newY));
+        break;
+      }
+      case 'rectangles': {
+        dispatch(updateRectanglePosition(id, newX, newY));
+        break;
+      }
+      default: {
+        console.log('bad');
+      }
+    }
   };
 
   const updateSizeState = (newWidth, newHeight) => {
-    dispatch(updateSize(id, newWidth, newHeight));
+    switch (type) {
+      case 'textboxes': {
+        dispatch(updateTextboxSize(id, newWidth, newHeight));
+        break;
+      }
+      case 'barcodes': {
+        dispatch(updateBarcodeSize(id, newWidth, newHeight));
+        break;
+      }
+      case 'rectangles': {
+        dispatch(updateRectangleSize(id, newWidth, newHeight));
+        break;
+      }
+      default: {
+        console.log('bad');
+      }
+    }
   };
 
   return (
