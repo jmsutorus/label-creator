@@ -1,9 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import Enzyme from 'enzyme';
+import { expect } from 'chai';
+import Adapter from 'enzyme-adapter-react-16';
 import RectangleForm from '../RectangleForm';
-import initialize from '../../../../../initialize';
 import store from '../../../../store/create';
 import AppProvider from '../../../../contexts/AppProvider';
+import FormInput from '../../FormInput';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const rectangle = {
   id: 0,
@@ -17,21 +21,13 @@ const rectangle = {
   height: 1
 };
 
-test('renders form', () => {
-  initialize({ store });
-  const { getByPlaceholderText } = render(
-    <AppProvider store={store}>
-      <RectangleForm rectangle={rectangle} />
-    </AppProvider>
-  );
-  const nameElement = getByPlaceholderText(/name/i);
-  const xElement = getByPlaceholderText(/12/i);
-  const yElement = getByPlaceholderText(/24/i);
-  const heightElement = getByPlaceholderText(/100/i);
-  const widthElement = getByPlaceholderText(/200/i);
-  expect(nameElement).toBeInTheDocument();
-  expect(xElement).toBeInTheDocument();
-  expect(yElement).toBeInTheDocument();
-  expect(heightElement).toBeInTheDocument();
-  expect(widthElement).toBeInTheDocument();
+describe('<RectangleForm />', () => {
+  it('renders five <FormLabel /> components', () => {
+    const mountWrapper = Enzyme.mount(
+      <AppProvider store={store}>
+        <RectangleForm rectangle={rectangle} />
+      </AppProvider>
+    );
+    expect(mountWrapper.find(FormInput)).to.have.lengthOf(5);
+  });
 });

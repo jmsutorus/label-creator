@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateTextbox, deleteTextbox } from '../../../store/actions/CanvasActions';
 import '../styles/styles.scss';
+import FormInput from '../FormInput';
 
 const propTypes = {
   textBox: PropTypes.shape({
@@ -42,111 +43,37 @@ function TextboxForm({ textBox }) {
   return (
     <div>
       <form onSubmit={() => handleChange()}>
-        <div className="">
-          <label htmlFor="name" className="form-label">
-            <span id="name" className="form-name">
-              Name
-            </span>
-            <input
-              className="form-input"
-              placeholder="name"
-              value={textBox.name}
-              type="text"
-              id="name"
-              onChange={e => handleChange('name', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="x" className="form-label">
-            <span id="x" className="form-name">
-              X
-            </span>
-            <input
-              className="form-input"
-              placeholder="24"
-              value={textBox.x}
-              type="number"
-              id="x"
-              onChange={e => handleChange('x', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="y" className="form-label">
-            <span id="y" className="form-name">
-              Y
-            </span>
-            <input
-              className="form-input"
-              placeholder="12"
-              value={textBox.y}
-              type="number"
-              id="y"
-              onChange={e => handleChange('y', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="width" className="form-label">
-            <span id="width" className="form-name">
-              Width
-            </span>
-            <input
-              className="form-input"
-              placeholder="100"
-              value={textBox.width}
-              type="number"
-              id="width"
-              onChange={e => handleChange('width', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="height" className="form-label">
-            <span id="height" className="form-name">
-              Height
-            </span>
-            <input
-              className="form-input"
-              placeholder="200"
-              value={textBox.height}
-              type="number"
-              id="height"
-              onChange={e => handleChange('height', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="fontSize" className="form-label">
-            <span id="fontSize" className="form-name">
-              Font Size
-            </span>
-            <input
-              className="form-input"
-              placeholder="18"
-              value={textBox.fontSize}
-              type="number"
-              id="fontSize"
-              onChange={e => handleChange('fontSize', e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="">
-          <label htmlFor="rotate" className="form-label">
-            <span id="rotate" className="form-name">
-              Rotate
-            </span>
-            <input
-              className="form-input"
-              placeholder="90"
-              value={textBox.rotate}
-              type="number"
-              id="rotate"
-              onChange={e => handleChange('rotate', e.target.value)}
-            />
-          </label>
-        </div>
+        <FormInput id="name" name="Name" value={textBox.name} type="text" onChange={handleChange} />
+        <FormInput id="x" name="X" value={textBox.x} type="number" onChange={handleChange} />
+        <FormInput id="y" name="Y" value={textBox.y} type="number" onChange={handleChange} />
+        <FormInput
+          id="width"
+          name="Width"
+          value={textBox.width}
+          type="number"
+          onChange={handleChange}
+        />
+        <FormInput
+          id="height"
+          name="Height"
+          value={textBox.height}
+          type="number"
+          onChange={handleChange}
+        />
+        <FormInput
+          id="fontSize"
+          name="Font Size"
+          value={textBox.fontSize}
+          type="number"
+          onChange={handleChange}
+        />
+        <FormInput
+          id="rotate"
+          name="Rotation"
+          value={textBox.rotate}
+          type="number"
+          onChange={handleChange}
+        />
       </form>
       <button type="button" className="label-button" onClick={() => handleDelete()}>
         Delete Property

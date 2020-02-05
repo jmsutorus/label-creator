@@ -12,7 +12,7 @@ import {
 
 export const initialState = {
   loadingLabelResults: false,
-  labelResults: null,
+  labelResults: [],
   labelResultsError: null,
   loadingLabelDelete: false,
   labelDeleteError: null
@@ -24,7 +24,7 @@ function LabelReducer(state = initialState, action) {
       return {
         ...state,
         loadingLabelResults: true,
-        labelResults: null,
+        labelResults: [],
         labelResultsError: null
       };
     case GET_LABEL_FAILURE:
@@ -38,7 +38,7 @@ function LabelReducer(state = initialState, action) {
     case GET_LABEL_SUCCESS:
       return {
         ...state,
-        loadinglabelResults: false,
+        loadingLabelResults: false,
         labelResults: action.payload
       };
     case POST_LABEL_REQUEST:
@@ -58,16 +58,17 @@ function LabelReducer(state = initialState, action) {
     case POST_LABEL_SUCCESS:
       return {
         ...state,
-        loadinglabelResults: false,
-        viewLabel: action.payload,
-        labelResults: [...state.labelResults, action.payload]
+        loadingLabelResults: false,
+        labelResults: [
+          ...state.labelResults.filter(x => x.id !== action.payload.id),
+          action.payload
+        ]
       };
-
     case DELETE_LABEL_REQUEST:
       return {
         ...state,
         loadingLabelDelete: true,
-        labelResults: null,
+        labelResults: [],
         labelDeleteError: null
       };
     case DELETE_LABEL_FAILURE:

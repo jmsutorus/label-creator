@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../../../styles/Resizable.css';
 import { updateCanvas } from '../../../store/actions/CanvasActions';
 import '../styles/styles.scss';
+import FormInput from '../FormInput';
 
 function CanvasForm() {
   const canvas = useSelector(state => state.CanvasReducer.canvas);
@@ -19,66 +20,28 @@ function CanvasForm() {
   return (
     <div style={{ marginBottom: '12px' }}>
       <div style={{ fontWeight: 'bold', marginBottom: '12px' }}>Label</div>
-      <div className="">
-        <label htmlFor="name" className="form-label">
-          <span id="name" className="form-name">
-            Name
-          </span>
-          <input
-            className="form-input"
-            placeholder="name"
-            value={canvas.name}
-            type="text"
-            id="name"
-            onChange={e => handleChange('name', e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="">
-        <label htmlFor="description" className="form-label">
-          <span id="description" className="form-name">
-            Desc
-          </span>
-          <input
-            className="form-input"
-            placeholder="description"
-            value={canvas.description}
-            type="text"
-            id="description"
-            onChange={e => handleChange('description', e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="">
-        <label htmlFor="width" className="form-label">
-          <span id="width" className="form-name">
-            Width
-          </span>
-          <input
-            className="form-input"
-            placeholder="200"
-            value={canvas.width}
-            type="number"
-            id="width"
-            onChange={e => handleChange('width', e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="">
-        <label htmlFor="height" className="form-label">
-          <span id="height" className="form-name">
-            Height
-          </span>
-          <input
-            className="form-input"
-            placeholder="100"
-            value={canvas.height}
-            type="number"
-            id="height"
-            onChange={e => handleChange('height', e.target.value)}
-          />
-        </label>
-      </div>
+      <FormInput id="name" name="Name" value={canvas.name} type="text" onChange={handleChange} />
+      <FormInput
+        id="description"
+        name="Desc"
+        value={canvas.description}
+        type="text"
+        onChange={handleChange}
+      />
+      <FormInput
+        id="height"
+        name="Height"
+        value={canvas.height}
+        type="number"
+        onChange={handleChange}
+      />
+      <FormInput
+        id="width"
+        name="Width"
+        value={canvas.width}
+        type="number"
+        onChange={handleChange}
+      />
     </div>
   );
 }

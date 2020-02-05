@@ -14,7 +14,8 @@ const barcode = {
   fontSize: 1,
   fontType: '',
   width: 1,
-  height: 1
+  height: 1,
+  rotate: 0
 };
 
 test('renders form', () => {
@@ -25,15 +26,5 @@ test('renders form', () => {
     </AppProvider>
   );
   const nameElement = getByPlaceholderText(/name/i);
-  const xElement = getByPlaceholderText(/12/i);
-  const yElement = getByPlaceholderText(/24/i);
-  const heightElement = getByPlaceholderText(/100/i);
-  const widthElement = getByPlaceholderText(/200/i);
-  const rotationElement = getByPlaceholderText(/90/i);
   expect(nameElement).toBeInTheDocument();
-  expect(xElement).toBeInTheDocument();
-  expect(yElement).toBeInTheDocument();
-  expect(heightElement).toBeInTheDocument();
-  expect(widthElement).toBeInTheDocument();
-  expect(rotationElement).toBeInTheDocument();
 });

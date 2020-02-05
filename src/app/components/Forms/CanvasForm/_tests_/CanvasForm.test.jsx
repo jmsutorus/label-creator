@@ -14,10 +14,6 @@ test('renders form', () => {
   );
   const nameElement = getByPlaceholderText(/name/i);
   const descriptionElement = getByPlaceholderText(/description/i);
-  const heightElement = getByPlaceholderText(/200/i);
-  const widthElement = getByPlaceholderText(/100/i);
   expect(nameElement).toBeInTheDocument();
   expect(descriptionElement).toBeInTheDocument();
-  expect(heightElement).toBeInTheDocument();
-  expect(widthElement).toBeInTheDocument();
 });

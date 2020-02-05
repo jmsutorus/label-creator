@@ -18,6 +18,7 @@ import {
   DELETE_TEXTBOX,
   DELETE_BARCODE
 } from '../constants/CanvasTypes';
+import { DELETE_LABEL_SUCCESS, POST_LABEL_SUCCESS } from '../constants/LabelTypes';
 
 export const initialState = {
   inspectorType: null,
@@ -150,8 +151,7 @@ function CanvasReducer(state = initialState, action) {
               return {
                 ...item,
                 width: action.payload.width,
-                height: action.payload.height,
-                fontSize: action.payload.height - action.payload.height * 0.31
+                height: action.payload.height
               };
             }
             return item;
@@ -186,15 +186,16 @@ function CanvasReducer(state = initialState, action) {
               return {
                 ...item,
                 width: action.payload.width,
-                height: action.payload.height,
-                fontSize: action.payload.height - action.payload.height * 0.31
+                height: action.payload.height
               };
             }
             return item;
           })
         }
       };
-    case ADD_RECTANGLE:
+    case ADD_RECTANGLE: {
+      const rectangleID =
+        state.canvas.rectangles.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
       return {
         ...state,
         canvas: {
@@ -203,14 +204,20 @@ function CanvasReducer(state = initialState, action) {
             ...state.canvas.rectangles,
             {
               ...action.payload,
-              id: state.canvas.rectangles.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+              id: rectangleID
             }
           ]
         },
         inspectorType: 'rectangle',
-        inspector: action.payload
+        inspector: {
+          ...action.payload,
+          id: rectangleID
+        }
       };
-    case ADD_TEXTBOX:
+    }
+    case ADD_TEXTBOX: {
+      const textboxID =
+        state.canvas.textboxes.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
       return {
         ...state,
         canvas: {
@@ -219,14 +226,20 @@ function CanvasReducer(state = initialState, action) {
             ...state.canvas.textboxes,
             {
               ...action.payload,
-              id: state.canvas.textboxes.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+              id: textboxID
             }
           ]
         },
         inspectorType: 'textbox',
-        inspector: action.payload
+        inspector: {
+          ...action.payload,
+          id: textboxID
+        }
       };
-    case ADD_BARCODE:
+    }
+    case ADD_BARCODE: {
+      const barcodeID =
+        state.canvas.barcodes.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
       return {
         ...state,
         canvas: {
@@ -235,13 +248,17 @@ function CanvasReducer(state = initialState, action) {
             ...state.canvas.barcodes,
             {
               ...action.payload,
-              id: state.canvas.barcodes.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+              id: barcodeID
             }
           ]
         },
         inspectorType: 'barcode',
-        inspector: action.payload
+        inspector: {
+          ...action.payload,
+          id: barcodeID
+        }
       };
+    }
     case UPDATE_RECT:
       return {
         ...state,
@@ -293,6 +310,31 @@ function CanvasReducer(state = initialState, action) {
         canvas: action.payload,
         inspectorType: null,
         inspector: {}
+      };
+    case DELETE_LABEL_SUCCESS:
+      return {
+        ...state,
+        inspectorType: null,
+        inspector: {},
+        canvas: {
+          name: 'My New Label',
+          description: 'Hello There',
+          upc: 'General Kenobi',
+          quantity: 0,
+          price: 0.0,
+          textboxes: [],
+          rectangles: [],
+          barcodes: [],
+          width: 600,
+          height: 400
+        }
+      };
+    case POST_LABEL_SUCCESS:
+      return {
+        ...state,
+        inspectorType: null,
+        inspector: {},
+        canvas: action.payload
       };
     default:
       return state;
