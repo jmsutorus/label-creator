@@ -42,15 +42,15 @@ function UpdateDraggable({ id, x, y, width, height, zIndex, type, children }) {
   const updatePositionState = (newX, newY) => {
     switch (type) {
       case 'textboxes': {
-        dispatch(updateTextboxPosition(id, newX, newY));
+        dispatch(updateTextboxPosition(id, newX / 100, newY / 100));
         break;
       }
       case 'barcodes': {
-        dispatch(updateBarcodePosition(id, newX, newY));
+        dispatch(updateBarcodePosition(id, newX / 100, newY / 100));
         break;
       }
       case 'rectangles': {
-        dispatch(updateRectanglePosition(id, newX, newY));
+        dispatch(updateRectanglePosition(id, newX / 100, newY / 100));
         break;
       }
       default: {
@@ -62,15 +62,15 @@ function UpdateDraggable({ id, x, y, width, height, zIndex, type, children }) {
   const updateSizeState = (newWidth, newHeight) => {
     switch (type) {
       case 'textboxes': {
-        dispatch(updateTextboxSize(id, newWidth, newHeight));
+        dispatch(updateTextboxSize(id, newWidth / 100, newHeight / 100));
         break;
       }
       case 'barcodes': {
-        dispatch(updateBarcodeSize(id, newWidth, newHeight));
+        dispatch(updateBarcodeSize(id, newWidth / 100, newHeight / 100));
         break;
       }
       case 'rectangles': {
-        dispatch(updateRectangleSize(id, newWidth, newHeight));
+        dispatch(updateRectangleSize(id, newWidth / 100, newHeight / 100));
         break;
       }
       default: {

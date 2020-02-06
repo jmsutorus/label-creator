@@ -32,8 +32,8 @@ export const initialState = {
     textboxes: [],
     rectangles: [],
     barcodes: [],
-    width: 600,
-    height: 400
+    width: 7,
+    height: 5
   }
 };
 
@@ -168,8 +168,7 @@ function CanvasReducer(state = initialState, action) {
               return {
                 ...item,
                 width: action.payload.width,
-                height: action.payload.height,
-                fontSize: action.payload.height - action.payload.height * 0.31
+                height: action.payload.height
               };
             }
             return item;

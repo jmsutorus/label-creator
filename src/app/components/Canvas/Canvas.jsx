@@ -13,8 +13,8 @@ function Canvas() {
   const canvas = useSelector(state => state.CanvasReducer.canvas);
 
   const style = {
-    height: `${canvas.height}px`,
-    width: `${canvas.width}px`
+    height: `${canvas.height * 100}px`,
+    width: `${canvas.width * 100}px`
   };
 
   const [{ canDrop, isOver }, drop] = useDrop({
@@ -43,10 +43,10 @@ function Canvas() {
           canvas.textboxes.map(object => (
             <UpdateDraggable
               id={object.id}
-              x={object.x}
-              y={object.y}
-              width={object.width}
-              height={object.height}
+              x={object.x * 100}
+              y={object.y * 100}
+              width={object.width * 100}
+              height={object.height * 100}
               zIndex={600}
               type="textboxes"
               key={object.id}
@@ -60,10 +60,10 @@ function Canvas() {
           canvas.rectangles.map(object => (
             <UpdateDraggable
               id={object.id}
-              x={object.x}
-              y={object.y}
-              width={object.width}
-              height={object.height}
+              x={object.x * 100}
+              y={object.y * 100}
+              width={object.width * 100}
+              height={object.height * 100}
               zIndex={400}
               type="rectangles"
               key={object.id}
@@ -77,10 +77,10 @@ function Canvas() {
           canvas.barcodes.map(object => (
             <UpdateDraggable
               id={object.id}
-              x={object.x}
-              y={object.y}
-              width={object.width}
-              height={object.height}
+              x={object.x * 100}
+              y={object.y * 100}
+              width={object.width * 100}
+              height={object.height * 100}
               zIndex={500}
               type="barcodes"
               key={object.id}

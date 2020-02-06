@@ -35,15 +35,15 @@ function Textbox({ textBox }) {
       <textarea
         style={{
           fontSize: textBox.fontSize,
-          width: textBox.width,
-          height: textBox.height,
+          width: textBox.width * 100,
+          height: textBox.height * 100,
           position: 'absolute',
           top: 0,
           left: 0,
           resize: 'none',
           overflow: 'hidden',
-          border: 'none',
-          backgroundColor: 'inherit'
+          backgroundColor: 'inherit',
+          border: 'none'
         }}
         value={textBox.name}
         type="text"

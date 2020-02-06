@@ -28,6 +28,7 @@ function FormInput({ id, name, value, type, onChange }) {
           type={type}
           id={id}
           onChange={e => handleChange(e)}
+          step="0.25"
         />
       </label>
     </div>

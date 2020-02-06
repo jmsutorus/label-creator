@@ -25,10 +25,10 @@ export function addTextBox() {
     payload: {
       id: 0,
       name: 'Text Box',
-      x: 50,
-      y: 50,
-      width: 80,
-      height: 29,
+      x: 1,
+      y: 1,
+      width: 1,
+      height: 0.5,
       fontSize: 20,
       fontType: '',
       rotate: 0
@@ -42,10 +42,10 @@ export function addRectangle() {
     payload: {
       id: 0,
       name: 'Rectangle',
-      x: 50,
-      y: 50,
-      width: 200,
-      height: 150,
+      x: 1,
+      y: 1,
+      width: 2,
+      height: 2,
       rotate: 0
     }
   };
@@ -57,10 +57,10 @@ export function addBarcode() {
     payload: {
       id: 0,
       name: 'Barcode',
-      x: 50,
-      y: 50,
-      width: 200,
-      height: 100,
+      x: 1,
+      y: 1,
+      width: 2,
+      height: 1,
       rotate: 0
     }
   };
@@ -183,8 +183,8 @@ export function newViewLabel() {
       textboxes: [],
       rectangles: [],
       barcodes: [],
-      width: 600,
-      height: 400
+      width: 7,
+      height: 5
     }
   };
 }
