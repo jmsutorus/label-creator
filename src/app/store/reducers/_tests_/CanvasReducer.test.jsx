@@ -16,8 +16,8 @@ describe('label reducer', () => {
         textboxes: [],
         rectangles: [],
         barcodes: [],
-        width: 600,
-        height: 400
+        width: 7,
+        height: 5
       }
     });
   });
@@ -39,8 +39,8 @@ describe('label reducer', () => {
         textboxes: [],
         rectangles: [],
         barcodes: [],
-        width: 600,
-        height: 400
+        width: 7,
+        height: 5
       }
     });
   });
@@ -387,7 +387,7 @@ describe('label reducer', () => {
         upc: 'General Kenobi',
         quantity: 0,
         price: 0.0,
-        textboxes: [{ id: 123, width: 4, height: 5, fontSize: 3.45 }],
+        textboxes: [{ id: 123, width: 4, height: 5, fontSize: 6 }],
         rectangles: [],
         barcodes: [],
         width: 600,
