@@ -1,12 +1,15 @@
-import React, { StrictMode } from 'react';
+import React, { lazy, StrictMode, Suspense } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.scss';
 import { getLabels } from '../../../store/actions/LabelActions';
 import AppProvider from '../../../contexts/AppProvider';
-import NotFound from '../NotFound';
-import Home from '../Home';
-import Pdf from '../Pdf';
+// import NotFound from '../NotFound';
+// import Home from '../Home';
+const NotFound = lazy(() => import('../NotFound'));
+const Home = lazy(() => import('../Home'));
+const Pdf = lazy(() => import('../Pdf'));
+// import Pdf from '../Pdf';
 
 const propTypes = {
   store: PropTypes.shape({
@@ -24,11 +27,13 @@ function App({ store }) {
     <AppProvider store={store}>
       <StrictMode>
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/pdf" component={Pdf} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/pdf" component={Pdf} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </BrowserRouter>
       </StrictMode>
     </AppProvider>
