@@ -46,7 +46,7 @@ describe('label reducer', () => {
       })
     ).toEqual({
       loadingLabelResults: false,
-      labelResults: [{ name: 'one' }, { name: 'two' }, { name: 'three' }],
+      labelResults: [{ name: 'one' }, { name: 'three' }, { name: 'two' }],
       labelResultsError: null,
       loadingLabelDelete: false,
       labelDeleteError: null
