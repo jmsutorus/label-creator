@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import './Header.scss';
 import { newViewLabel } from '../../../store/actions/CanvasActions';
@@ -46,9 +47,11 @@ function Header() {
           </a>
         </button>
         <div className="options-button-wrapper">
-          <button type="button" className="nav-button creator-button">
-            Label Creator
-          </button>
+          <Link to="/">
+            <button type="button" className="nav-button creator-button link-button">
+              Label Creator
+            </button>
+          </Link>
         </div>
       </div>
       <div className="nav-wrapper">

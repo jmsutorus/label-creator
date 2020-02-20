@@ -18,6 +18,16 @@ export const initialState = {
   labelDeleteError: null
 };
 
+const compare = (a, b) => {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+};
+
 function LabelReducer(state = initialState, action) {
   switch (action.type) {
     case GET_LABEL_REQUEST:
@@ -39,7 +49,7 @@ function LabelReducer(state = initialState, action) {
       return {
         ...state,
         loadingLabelResults: false,
-        labelResults: action.payload
+        labelResults: action.payload.sort(compare)
       };
     case POST_LABEL_REQUEST:
       return {
@@ -62,7 +72,7 @@ function LabelReducer(state = initialState, action) {
         labelResults: [
           ...state.labelResults.filter(x => x.id !== action.payload.id),
           action.payload
-        ]
+        ].sort(compare)
       };
     case DELETE_LABEL_REQUEST:
       return {
@@ -83,7 +93,7 @@ function LabelReducer(state = initialState, action) {
       return {
         ...state,
         loadingLabelDelete: false,
-        labelResults: action.payload
+        labelResults: action.payload.sort(compare)
       };
     default:
       return state;

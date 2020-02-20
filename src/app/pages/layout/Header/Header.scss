@@ -37,6 +37,7 @@
   outline: none;
   background-color: inherit;
   color: #585858;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -49,4 +50,8 @@
 .creator-button {
   font-size: 18px;
   font-weight: 600;
+}
+
+.link-button {
+  margin-top: 6px;
 }

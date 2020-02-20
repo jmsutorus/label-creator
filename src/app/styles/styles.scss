@@ -71,6 +71,14 @@
   border-radius: 6px;
   margin: 3px;
   padding: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.847);
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
   &:hover {
     cursor: pointer;
   }

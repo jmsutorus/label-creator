@@ -44,8 +44,8 @@ export function addRectangle() {
       name: 'Rectangle',
       x: 1,
       y: 1,
-      width: 2,
-      height: 2,
+      width: 1,
+      height: 1,
       rotate: 0
     }
   };
@@ -59,7 +59,7 @@ export function addBarcode() {
       name: 'Barcode',
       x: 1,
       y: 1,
-      width: 2,
+      width: 1.5,
       height: 1,
       rotate: 0
     }
@@ -183,8 +183,8 @@ export function newViewLabel() {
       textboxes: [],
       rectangles: [],
       barcodes: [],
-      width: 7,
-      height: 5
+      width: 5,
+      height: 3
     }
   };
 }

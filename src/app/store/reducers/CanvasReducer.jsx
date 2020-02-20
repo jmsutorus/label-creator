@@ -32,8 +32,8 @@ export const initialState = {
     textboxes: [],
     rectangles: [],
     barcodes: [],
-    width: 7,
-    height: 5
+    width: 5,
+    height: 3
   }
 };
 

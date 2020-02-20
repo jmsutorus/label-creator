@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setViewLabel } from '../../store/actions/CanvasActions';
+import './Label.scss';
 
 const propTypes = {
   label: PropTypes.shape({
@@ -26,7 +27,7 @@ function Label({ label }) {
 
   return (
     <div className="">
-      <button className="label-button" type="button" onClick={() => dispatch(setViewLabel(label))}>
+      <button className="label" type="button" onClick={() => dispatch(setViewLabel(label))}>
         {label.name}
       </button>
     </div>
