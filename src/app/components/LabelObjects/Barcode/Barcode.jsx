@@ -30,6 +30,7 @@ function Barcode({ barcode }) {
         width={barcode.width}
         height={barcode.height * 100}
         displayValue={barcode.showNumber}
+        al
       />
     </div>
   );

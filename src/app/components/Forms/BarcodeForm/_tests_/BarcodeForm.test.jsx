@@ -15,7 +15,9 @@ const barcode = {
   fontType: '',
   width: 1,
   height: 1,
-  rotate: 0
+  rotate: 0,
+  field: '',
+  showNumber: false
 };
 
 test('renders form', () => {
