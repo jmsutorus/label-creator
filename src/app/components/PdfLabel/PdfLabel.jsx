@@ -20,10 +20,12 @@ function PdfLabel() {
       .filter(db => db.name === canvas.database)[0]
       ?.tables.filter(tb => tb.name === canvas.table)[0]
       ?.fields.filter(fd => fd.name === object.field)[0].value;
-    return {
-      ...object,
-      name: text
-    };
+    return text
+      ? {
+          ...object,
+          name: text
+        }
+      : object;
   };
 
   return (
@@ -35,6 +37,7 @@ function PdfLabel() {
             y={object.y * 100}
             width={object.width * 100}
             height={object.height * 100}
+            key={object.id}
           >
             <Textbox textBox={textBox(object)} />
           </LabelWrapper>
@@ -46,6 +49,7 @@ function PdfLabel() {
             y={object.y * 100}
             width={object.width * 100}
             height={object.height * 100}
+            key={object.id}
           >
             <Rectangle rectangle={object} />
           </LabelWrapper>
@@ -57,6 +61,7 @@ function PdfLabel() {
             y={object.y * 100}
             width={object.width * 100}
             height={object.height * 100}
+            key={object.id}
           >
             <Barcode barcode={object} />
           </LabelWrapper>
