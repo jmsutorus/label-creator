@@ -8,10 +8,22 @@ import './PdfLabel.scss';
 
 function PdfLabel() {
   const canvas = useSelector(state => state.CanvasReducer.canvas);
+  const databases = useSelector(state => state.DatabaseReducer.databaseResults);
 
   const style = {
     height: `${canvas.height * 100}px`,
     width: `${canvas.width * 100}px`
+  };
+
+  const textBox = object => {
+    const text = databases
+      .filter(db => db.name === canvas.database)[0]
+      ?.tables.filter(tb => tb.name === canvas.table)[0]
+      ?.fields.filter(fd => fd.name === object.field)[0].value;
+    return {
+      ...object,
+      name: text
+    };
   };
 
   return (
@@ -24,7 +36,7 @@ function PdfLabel() {
             width={object.width * 100}
             height={object.height * 100}
           >
-            <Textbox textBox={object} />
+            <Textbox textBox={textBox(object)} />
           </LabelWrapper>
         ))}
       {canvas.rectangles &&
