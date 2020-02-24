@@ -31,7 +31,8 @@ export function addTextBox() {
       height: 0.5,
       fontSize: 20,
       fontType: '',
-      rotate: 0
+      rotate: 0,
+      field: ''
     }
   };
 }
@@ -61,7 +62,8 @@ export function addBarcode() {
       y: 1,
       width: 1.5,
       height: 1,
-      rotate: 0
+      rotate: 0,
+      field: ''
     }
   };
 }

@@ -33,7 +33,9 @@ export const initialState = {
     rectangles: [],
     barcodes: [],
     width: 5,
-    height: 3
+    height: 3,
+    database: '',
+    table: ''
   }
 };
 
@@ -53,7 +55,9 @@ function CanvasReducer(state = initialState, action) {
           name: action.payload.name,
           description: action.payload.description,
           width: action.payload.width,
-          height: action.payload.height
+          height: action.payload.height,
+          database: action.payload.database,
+          table: action.payload.table
         }
       };
     case DELETE_RECTANGLE:
