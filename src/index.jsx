@@ -5,6 +5,7 @@ import './index.css';
 import initialize from './initialize';
 import App from './app/pages/layout/App/App';
 import store from './app/store/create';
+import './app/styles/styles.scss';
 
 initialize({ store });
 

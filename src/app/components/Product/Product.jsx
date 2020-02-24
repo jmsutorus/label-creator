@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Product.scss';
 
 const propTypes = {
   product: PropTypes.shape({
@@ -15,7 +16,7 @@ const defaultProps = {};
 
 function Product({ product }) {
   return (
-    <div>
+    <div className="product">
       <span>{product.name}</span>
       <span>{product.description}</span>
     </div>

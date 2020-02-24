@@ -1,11 +1,13 @@
-import React, { StrictMode } from 'react';
+import React, { lazy, StrictMode, Suspense } from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from '../Header';
-import Footer from '../Footer';
 import './App.scss';
-import { getProducts } from '../../../store/actions/ProductActions';
+import { getLabels } from '../../../store/actions/LabelActions';
 import AppProvider from '../../../contexts/AppProvider';
-import Products from '../../../components/Products';
+
+const NotFound = lazy(() => import('../NotFound'));
+const Home = lazy(() => import('../Home'));
+const Pdf = lazy(() => import('../Pdf'));
 
 const propTypes = {
   store: PropTypes.shape({
@@ -18,15 +20,19 @@ const propTypes = {
 const defaultProps = {};
 
 function App({ store }) {
-  store.dispatch(getProducts());
+  store.dispatch(getLabels());
   return (
     <AppProvider store={store}>
       <StrictMode>
-        <Header />
-        <main>
-          <Products />
-        </main>
-        <Footer />
+        <BrowserRouter>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/pdf" component={Pdf} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+        </BrowserRouter>
       </StrictMode>
     </AppProvider>
   );

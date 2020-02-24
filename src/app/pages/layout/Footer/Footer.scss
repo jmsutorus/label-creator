@@ -1,4 +1,27 @@
 .footer {
   width: 100%;
-  background-color: red;
+  overflow: hidden;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 2px 0 9px -3px grey;
+  z-index: 1000;
+  background-color: #c42f34;
+
+  .footer-text {
+    margin: 6px;
+    color: white;
+  }
+
+  .me {
+    position: absolute;
+    right: 9px;
+    bottom: 4px;
+    color: #e2a0a2;
+    opacity: 0.2;
+  }
 }
