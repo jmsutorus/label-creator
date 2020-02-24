@@ -57,13 +57,14 @@ export function addBarcode() {
     type: ADD_BARCODE,
     payload: {
       id: 0,
-      name: 'Barcode',
+      name: '042100005264',
       x: 1,
       y: 1,
       width: 1.5,
       height: 1,
       rotate: 0,
-      field: ''
+      field: '',
+      showNumber: false
     }
   };
 }

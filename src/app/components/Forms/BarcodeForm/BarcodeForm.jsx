@@ -16,7 +16,8 @@ const propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     rotate: PropTypes.number,
-    field: PropTypes.string
+    field: PropTypes.string,
+    showNumber: PropTypes.bool
   }).isRequired
 };
 
@@ -29,8 +30,11 @@ function BarcodeForm({ barcode }) {
 
   const handleChange = (target, value) => {
     let transformValue = value;
-    if (target !== 'name' && target !== 'field') {
+    if (target !== 'name' && target !== 'field' && target !== 'showNumber') {
       transformValue = parseInt(value, 10);
+    }
+    if (target === 'showNumber') {
+      transformValue = value !== 'true';
     }
     const newBarcode = {
       ...barcode,
@@ -68,6 +72,13 @@ function BarcodeForm({ barcode }) {
           name="Rotation"
           value={barcode.rotate}
           type="number"
+          onChange={handleChange}
+        />
+        <FormInput
+          id="showNumber"
+          name="Show #"
+          value={barcode.showNumber}
+          type="checkbox"
           onChange={handleChange}
         />
         <div className="">

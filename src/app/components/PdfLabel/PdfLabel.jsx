@@ -28,6 +28,19 @@ function PdfLabel() {
       : object;
   };
 
+  const barcode = object => {
+    const text = databases
+      .filter(db => db.name === canvas.database)[0]
+      ?.tables.filter(tb => tb.name === canvas.table)[0]
+      ?.fields.filter(fd => fd.name === object.field)[0].value;
+    return text
+      ? {
+          ...object,
+          name: text
+        }
+      : object;
+  };
+
   return (
     <div style={style} className="pdfLabel">
       {canvas.textboxes &&
@@ -63,7 +76,7 @@ function PdfLabel() {
             height={object.height * 100}
             key={object.id}
           >
-            <Barcode barcode={object} />
+            <Barcode barcode={barcode(object)} />
           </LabelWrapper>
         ))}
     </div>
