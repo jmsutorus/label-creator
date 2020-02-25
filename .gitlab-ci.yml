@@ -10,8 +10,8 @@ image: docker:19.03.1
 variables:
   GITLAB_BUILD_IMAGE_LATEST: label-creator:latest
 
-before_script:
-  - npm i
+#before_script:
+#  - npm i
 
 stages:
   #  - lint
