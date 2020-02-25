@@ -9,7 +9,6 @@ build:
   script: run # Build script to execute with the build tool, common choices are: build.gradle (default), pom.xml, main.go, some build tools do not require one
   target: build # Build tool target to execute, the default changes depending on the build type, java_war = bootWar, java_jar = bootJar, go = main.go, angular = prod
   workingDirectory: some-new-directory-ui # New - Valid for npm and scala builds only, change the directory where Jenkins will look to find and use projects build tools, such as grunt.
-  options: -d -b  ${buildNumber} ${environment} # NEW Optional, options for shell build script.  If left undefined default for gradle will be -d -b, for maven -f, -o for go, angular and angularJS default is empty.  If value is provided default will be overridden.
   tasks: # Optional, Task for shell build script, for gradle and maven builds, if left undefined default will be -clean, if value is provided default will be overridden. Multiple values can be defined, each should be on a new line with a dash.
     - clean
     - npm i
