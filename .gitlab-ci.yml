@@ -5,7 +5,7 @@
 #  tags:
 #    - protected
 
-image: node:latest
+image: docker:19.03.1
 
 variables:
   GITLAB_BUILD_IMAGE_LATEST: label-creator:latest
@@ -14,19 +14,19 @@ before_script:
   - npm i
 
 stages:
-  - lint
-  - test
+  #  - lint
+  #  - test
   - build
 
-Lint:
-  stage: lint
-  script:
-    - npm run lint
+#Lint:
+#  stage: lint
+#  script:
+#    - npm run lint
 
-Test:
-  stage: test
-  script:
-    - yarn test --coverage --watchAll=false
+#Test:
+#  stage: test
+#  script:
+#    - yarn test --coverage --watchAll=false
 
 Build:
   stage: build
