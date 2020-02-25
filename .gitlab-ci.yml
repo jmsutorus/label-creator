@@ -1,9 +1,9 @@
 # For jobs only run on master with protected runners
-.only-master:
-  only:
-    - master
-  tags:
-    - protected
+#.only-master:
+#  only:
+#    - master
+#  tags:
+#    - protected
 
 image: node:latest
 
@@ -35,5 +35,6 @@ Build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build .
     - docker push $GITLAB_BUILD_IMAGE_LATEST
-  extends:
-    - .only-master
+#  extends:
+#    - .only-master
+
