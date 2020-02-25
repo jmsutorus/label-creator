@@ -28,3 +28,11 @@ registry:
     host: nexus-repo.heb.com
     type: nexus2
     repository: releases
+
+release: # Each element defines a service release based on a git branch, every service will be suffixed (tagged) with the name of the release that corresponds to the branch, except for the 'prod' release which will not be suffixed at all, this is independent of the environment, hence an environment can be used to host many service releases (i.e. 'dev', 'dev2', 'int' service releases could all be on the 'dev' environment)
+  - prod:
+    branch: master # Name of the branch that is used to match this release
+  - cert:
+    branch: certication
+  - dev:
+    branch: develop
