@@ -1,6 +1,6 @@
 application:
   name: label-creator # Mandatory, global or general application name
-  serverGroup: 000 # Server group assigned to the application
+  serverGroup: 443 # Server group assigned to the application
 
 build:
   type: nodejs # Type of build to execute, it can be java_war (default), java_war_ee, java_jar, angular, go, middleware, npm, scalaWar, scalaJar
@@ -16,16 +16,15 @@ package:
   architecture: x86_64 # During publishing stage used to create rpm string for publishing to Nexus servers.  Default is noarch
   style: full # Sets properties.package.template value, valid values are plain and full.  For build type java_war when plain use HEB_warBuilder_plain.spec.mu otherwise HEB_warBuilder.spec.mu.  For angular and angularJS when plain use HEB_ngBuilder_plain.spec.mu otherise HEB_ngBuilder.spec.mu.
 
-registry:
-  - name: nexus2
-    host: nexus-repo.heb.com
-    type: nexus2
-    repository: releases
-
 service:
   name: label-creator # Mandatory, the name of the servicet to build and package
   version: 1.0.0 # Mandatory, version assigned to the build
   buildDir: build # Directory where the build artifact will be located after a successful build, defaults to 'build/libs'
   tag: yes # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
-  classPath: installDirectory # For use in java_jar and scalaJar build.type. This will be used as part of the deployment options specifically for the java option cp, when defined as installDirectory java process will look for all class paths at the artifact install folder, useful for loading jars that aren't included within application jar file.  Set this as folder structure if you need to reference a folder inside the install directory.
   startupFile: ./server/server.js # For use in NodeJS build.type. This will be using as a part of the startup script. This is the main js file for starting up the NodeJS service.
+
+registry:
+  - name: nexus2
+    host: nexus-repo.heb.com
+    type: nexus2
+    repository: releases
