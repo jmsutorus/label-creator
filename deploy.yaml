@@ -23,6 +23,19 @@ service:
   tag: yes # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
   startupFile: ./server/server.js # For use in NodeJS build.type. This will be using as a part of the startup script. This is the main js file for starting up the NodeJS service.
 
+environment:
+  - name: dev # Each environment element defines a deployment environment
+    isDev: yes
+    instances: # Only used for RPM packages, ignored otherwise, the list of servers (instances) where the package will be deployed
+      - w2dapl0042306.heb.com # Fully qualified server name
+    deployment: dashboard_agent
+    repository: heb-app-releases
+  - name: cert
+    instances:
+      - w2capl0042306.heb.com
+    deployment: dashboard_agent
+    repository: heb-app-releases
+
 registry:
   - name: nexus2
     host: nexus-repo.heb.com
@@ -33,6 +46,6 @@ release: # Each element defines a service release based on a git branch, every s
   - prod:
     branch: master # Name of the branch that is used to match this release
   - cert:
-    branch: certication
+    branch: master
   - dev:
-    branch: develop
+    branch: master
