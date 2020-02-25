@@ -1,9 +1,9 @@
 # For jobs only run on master with protected runners
-#.only-master:
-#  only:
-#    - master
-#  tags:
-#    - protected
+.only-master:
+  only:
+    - master
+  tags:
+    - protected
 
 image: docker:19.03.1
 
@@ -14,26 +14,25 @@ variables:
 #  - npm i
 
 stages:
-  #  - lint
-  #  - test
+  - lint
+  - test
   - build
 
-#Lint:
-#  stage: lint
-#  script:
-#    - npm run lint
+Lint:
+  stage: lint
+  script:
+    - npm run lint
 
-#Test:
-#  stage: test
-#  script:
-#    - yarn test --coverage --watchAll=false
+Test:
+  stage: test
+  script:
+    - yarn test --coverage --watchAll=false
 
 Build:
   stage: build
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD https://harbor.heb.com
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build .
     - docker push $GITLAB_BUILD_IMAGE_LATEST
-#  extends:
-#    - .only-master
-
+  extends:
+    - .only-master
