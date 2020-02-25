@@ -4,7 +4,7 @@ application:
 
 build:
   type: nodejs # Type of build to execute, it can be java_war (default), java_war_ee, java_jar, angular, go, middleware, npm, scalaWar, scalaJar
-  nodeVersion: node latest
+  nodeVersion: node 11.9.0
   tool: manual # Tool that should be used to build, choose from gradle (default), maven, go, angular-cli, sbt (scala)
   tasks: # Optional, Task for shell build script, for gradle and maven builds, if left undefined default will be -clean, if value is provided default will be overridden. Multiple values can be defined, each should be on a new line with a dash.
     - npm run lint
