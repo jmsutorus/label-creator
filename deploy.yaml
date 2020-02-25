@@ -1,5 +1,5 @@
 application:
-  name: label-creator # Mandatory, global or general application name
+  name: labelCreator # Mandatory, global or general application name
   serverGroup: 443 # Server group assigned to the application
 
 build:
@@ -17,7 +17,7 @@ package:
   style: full # Sets properties.package.template value, valid values are plain and full.  For build type java_war when plain use HEB_warBuilder_plain.spec.mu otherwise HEB_warBuilder.spec.mu.  For angular and angularJS when plain use HEB_ngBuilder_plain.spec.mu otherise HEB_ngBuilder.spec.mu.
 
 service:
-  name: label-creator # Mandatory, the name of the servicet to build and package
+  name: label_creator # Mandatory, the name of the servicet to build and package
   version: 1.0.0 # Mandatory, version assigned to the build
   buildDir: build # Directory where the build artifact will be located after a successful build, defaults to 'build/libs'
   tag: yes # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
