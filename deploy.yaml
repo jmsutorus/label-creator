@@ -8,7 +8,7 @@ build:
   tool: manual # Tool that should be used to build, choose from gradle (default), maven, go, angular-cli, sbt (scala)
   tasks: # Optional, Task for shell build script, for gradle and maven builds, if left undefined default will be -clean, if value is provided default will be overridden. Multiple values can be defined, each should be on a new line with a dash.
     - npm run lint
-    - yarn test --coverage --watchAll=false
+    - npm run test
     - npm run build
 
 package:
