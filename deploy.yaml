@@ -14,37 +14,37 @@ build:
     - npm i
     - npm run lint
     - npm run test
-  package:
-    type: rpm    # How to package the app, choices are: rpm (default), docker, combined (rpm + docker, requires special definitions)
-    architecture: x86_64  # During publishing stage used to create rpm string for publishing to Nexus servers.  Default is noarch
-    style: full         # Sets properties.package.template value, valid values are plain and full.  For build type java_war when plain use HEB_warBuilder_plain.spec.mu otherwise HEB_warBuilder.spec.mu.  For angular and angularJS when plain use HEB_ngBuilder_plain.spec.mu otherise HEB_ngBuilder.spec.mu.
-    config:         # Value will be used to set the mockConfig value in the hash.json file.  Default is epel-7-x86_64, if properties.package.style = full then set to heb-7-plain-x86_64
-    dist:           # During publishing stage used to create rpm string for publishing to Nexus servers. Default is el17.centos unless properties.package.style is full in which case will be set to empty.  Value i also used in the hash.json file as property ELDist.
-    classifier:     # Default is el7.centos, used during publishing stage to create rpm string
-    suffix:         # Default is .el7.centos, used during publishing stage to create rpm string, used as the package suffix after the build number.
-    template:       # The RPM spec template to be used, when properties.build.type is java_war and properties.package.style is plain then it will use HEB_warBuilder_plain.spec.mu otherwise use HEB_warBuilder.spec.mu.  When properties.build.type is java-jar use HEB_jarBuilder.spec.mu.  When properties.build.type is go use HEB_goBuilder.spec.mu.  When properties.build.type is angular or angularJS and properties.package.style is plain then use HEB_ngBuilder_plain.spec.mu otherwise HEB_ngBuilder.spec.mu.
-    srcDist:        # Not user defined, used by the hash.json file as a property.  When properties.package.style is full then calue will ve .el5.centos otherwise the value will be empty.
-    dependencies:   # Not user defined, used by hash.json in kubernetes as a property called dependencies. When properteis.build.type is java_war value will be HEB_tomcat, when javca_jar then will be HEB_jre, when go will be empty, when angular or angularJS will be HEB_httpd.
-    systemSvcName:  # Not user defined, used by hash.json in kubernetes as a property called systemSvcName.  When properties.build.type is java_war value will be tomcat, when java_jar, go, angular or angularJS the value used will be properties.service.name.
-    userName:       # Not user defined, used by hash.json in kubernetesas a property called userName.  When properties.build.type is java_war, java_jar, angular or angularJS the value will be svct_tc, when properties.build.type is go then the value will be root.
-    userGroup:      # Not user defined, used by hash.jason in kubernetes as a property called userGroup.  When properties.build.type is java_war or java_jar then value will be javaapp.  When go will be root, when angular or angularJS then  will be ngapp.
-    targetDir:      # Not user defined, used by hash.json in kubernetes as a property called targetDir. When properties.build.type is java_war then value will be appl/apache-tomcat/webapps, when java_jar or go 1then appl/services/' + properties.service.name, when angular or angularJS then appl/httpd/htdocs/html.
-    tagBack:        # Not user defined, default value starts off as true if tagGit has been defined, false if not.  This value will be used for tagGit if a property has not been defined for properties.environment[i].tagGit fort each individual environment value.
-    dependencies:   # Optional dependencies for the generated RPM. Only applies to 'python' builds.
-    postInstallScript: # Optional. To be inserted into the %post section of the generated RPM. Can be multiple lines. Only applies to 'python' builds.
-    extraFiles:        # Optional additional files to include from the source tree. Only applies to 'python' builds.
-      - src:           # The file to copy.
-        destDir:       # The directory in which to place the file.
-    registry:
-      - name: nexus2
-        host: nexus-repo.heb.com
-        type: nexus2
-        repository: releases
-  service:
-    name: label-creator               # Mandatory, the name of the servicet to build and package
-    version: 1.0.0                  # Mandatory, version assigned to the build
-    buildDir: dist                  # Directory where the build artifact will be located after a successful build, defaults to 'build/libs'
-    tag: yes                        # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
-    classPath: installDirectory     # For use in java_jar and scalaJar build.type. This will be used as part of the deployment options specifically for the java option cp, when defined as installDirectory java process will look for all class paths at the artifact install folder, useful for loading jars that aren't included within application jar file.  Set this as folder structure if you need to reference a folder inside the install directory.
-    startupFile: ./server/server.js # For use in NodeJS build.type. This will be using as a part of the startup script. This is the main js file for starting up the NodeJS service.
+package:
+  type: rpm    # How to package the app, choices are: rpm (default), docker, combined (rpm + docker, requires special definitions)
+  architecture: x86_64  # During publishing stage used to create rpm string for publishing to Nexus servers.  Default is noarch
+  style: full         # Sets properties.package.template value, valid values are plain and full.  For build type java_war when plain use HEB_warBuilder_plain.spec.mu otherwise HEB_warBuilder.spec.mu.  For angular and angularJS when plain use HEB_ngBuilder_plain.spec.mu otherise HEB_ngBuilder.spec.mu.
+  config:         # Value will be used to set the mockConfig value in the hash.json file.  Default is epel-7-x86_64, if properties.package.style = full then set to heb-7-plain-x86_64
+  dist:           # During publishing stage used to create rpm string for publishing to Nexus servers. Default is el17.centos unless properties.package.style is full in which case will be set to empty.  Value i also used in the hash.json file as property ELDist.
+  classifier:     # Default is el7.centos, used during publishing stage to create rpm string
+  suffix:         # Default is .el7.centos, used during publishing stage to create rpm string, used as the package suffix after the build number.
+  template:       # The RPM spec template to be used, when properties.build.type is java_war and properties.package.style is plain then it will use HEB_warBuilder_plain.spec.mu otherwise use HEB_warBuilder.spec.mu.  When properties.build.type is java-jar use HEB_jarBuilder.spec.mu.  When properties.build.type is go use HEB_goBuilder.spec.mu.  When properties.build.type is angular or angularJS and properties.package.style is plain then use HEB_ngBuilder_plain.spec.mu otherwise HEB_ngBuilder.spec.mu.
+  srcDist:        # Not user defined, used by the hash.json file as a property.  When properties.package.style is full then calue will ve .el5.centos otherwise the value will be empty.
+  dependencies:   # Not user defined, used by hash.json in kubernetes as a property called dependencies. When properteis.build.type is java_war value will be HEB_tomcat, when javca_jar then will be HEB_jre, when go will be empty, when angular or angularJS will be HEB_httpd.
+  systemSvcName:  # Not user defined, used by hash.json in kubernetes as a property called systemSvcName.  When properties.build.type is java_war value will be tomcat, when java_jar, go, angular or angularJS the value used will be properties.service.name.
+  userName:       # Not user defined, used by hash.json in kubernetesas a property called userName.  When properties.build.type is java_war, java_jar, angular or angularJS the value will be svct_tc, when properties.build.type is go then the value will be root.
+  userGroup:      # Not user defined, used by hash.jason in kubernetes as a property called userGroup.  When properties.build.type is java_war or java_jar then value will be javaapp.  When go will be root, when angular or angularJS then  will be ngapp.
+  targetDir:      # Not user defined, used by hash.json in kubernetes as a property called targetDir. When properties.build.type is java_war then value will be appl/apache-tomcat/webapps, when java_jar or go 1then appl/services/' + properties.service.name, when angular or angularJS then appl/httpd/htdocs/html.
+  tagBack:        # Not user defined, default value starts off as true if tagGit has been defined, false if not.  This value will be used for tagGit if a property has not been defined for properties.environment[i].tagGit fort each individual environment value.
+  dependencies:   # Optional dependencies for the generated RPM. Only applies to 'python' builds.
+  postInstallScript: # Optional. To be inserted into the %post section of the generated RPM. Can be multiple lines. Only applies to 'python' builds.
+  extraFiles:        # Optional additional files to include from the source tree. Only applies to 'python' builds.
+    - src:           # The file to copy.
+      destDir:       # The directory in which to place the file.
+registry:
+  - name: nexus2
+    host: nexus-repo.heb.com
+    type: nexus2
+    repository: releases
+service:
+  name: label-creator               # Mandatory, the name of the servicet to build and package
+  version: 1.0.0                  # Mandatory, version assigned to the build
+  buildDir: dist                  # Directory where the build artifact will be located after a successful build, defaults to 'build/libs'
+  tag: yes                        # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
+  classPath: installDirectory     # For use in java_jar and scalaJar build.type. This will be used as part of the deployment options specifically for the java option cp, when defined as installDirectory java process will look for all class paths at the artifact install folder, useful for loading jars that aren't included within application jar file.  Set this as folder structure if you need to reference a folder inside the install directory.
+  startupFile: ./server/server.js # For use in NodeJS build.type. This will be using as a part of the startup script. This is the main js file for starting up the NodeJS service.
     
