@@ -7,7 +7,6 @@ const propTypes = {
   y: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  zIndex: PropTypes.number.isRequired,
   children: PropTypes.node
 };
 
@@ -15,18 +14,17 @@ const defaultProps = {
   children: null
 };
 
-function LabelWrapper({ x, y, width, height, zIndex, children }) {
+function LabelWrapper({ x, y, width, height, children }) {
   const style = {
     position: 'absolute',
     top: y,
     left: x,
     height,
-    width,
-    zIndex
+    width
   };
 
   return (
-    <div style={style} size={{ width, height }} position={{ x, y }} enableUserSelectHack={false}>
+    <div style={style} size={{ width, height }} position={{ x, y }} enableuserselecthack="false">
       {children}
     </div>
   );

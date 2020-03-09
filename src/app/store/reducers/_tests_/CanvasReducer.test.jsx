@@ -17,7 +17,9 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 5,
-        height: 3
+        height: 3,
+        database: '',
+        table: ''
       }
     });
   });
@@ -40,7 +42,9 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 5,
-        height: 3
+        height: 3,
+        database: '',
+        table: ''
       }
     });
   });
@@ -48,7 +52,14 @@ describe('label reducer', () => {
     expect(
       CanvasReducer(undefined, {
         type: types.UPDATE_CANVAS,
-        payload: { name: 'name', description: 'description', width: 123, height: 456 }
+        payload: {
+          name: 'name',
+          description: 'description',
+          width: 123,
+          height: 456,
+          database: 'db',
+          table: 'tb'
+        }
       })
     ).toEqual({
       inspectorType: null,
@@ -63,7 +74,9 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 123,
-        height: 456
+        height: 456,
+        database: 'db',
+        table: 'tb'
       }
     });
   });
@@ -124,7 +137,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -145,7 +159,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -165,7 +180,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [{ id: 123 }],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -186,7 +202,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -247,7 +264,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -268,7 +286,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -288,7 +307,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [{ id: 123, x: 1, y: 2 }],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -309,7 +329,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [{ id: 123, x: 4, y: 5 }],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -370,7 +391,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -391,7 +413,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -411,7 +434,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [{ id: 123, width: 1, height: 2 }],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -432,7 +456,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [{ id: 123, width: 4, height: 5 }],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -452,7 +477,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -473,7 +499,8 @@ describe('label reducer', () => {
         rectangles: [{ id: 0, width: 4, height: 5, x: 1, y: 2 }],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -493,7 +520,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -514,7 +542,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -534,7 +563,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -555,7 +585,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [{ id: 0, width: 4, height: 5, x: 1, y: 2 }],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -616,7 +647,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [{ id: 123, width: 40, height: 50, x: 10, y: 20 }],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -637,7 +669,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [{ id: 123, width: 4, height: 5, x: 1, y: 2 }],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -657,7 +690,8 @@ describe('label reducer', () => {
             rectangles: [],
             barcodes: [],
             width: 600,
-            height: 400
+            height: 400,
+            field: ''
           }
         },
         {
@@ -678,7 +712,8 @@ describe('label reducer', () => {
         rectangles: [],
         barcodes: [],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });
@@ -696,7 +731,8 @@ describe('label reducer', () => {
           rectangles: [{ id: 123, width: 4, height: 5, x: 1, y: 2 }],
           barcodes: [{ id: 123, width: 4, height: 5, x: 1, y: 2 }],
           width: 600,
-          height: 400
+          height: 400,
+          field: ''
         }
       })
     ).toEqual({
@@ -712,7 +748,8 @@ describe('label reducer', () => {
         rectangles: [{ id: 123, width: 4, height: 5, x: 1, y: 2 }],
         barcodes: [{ id: 123, width: 4, height: 5, x: 1, y: 2 }],
         width: 600,
-        height: 400
+        height: 400,
+        field: ''
       }
     });
   });

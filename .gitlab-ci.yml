@@ -1,4 +1,14 @@
+# For jobs only run on master with protected runners
+.only-master:
+  only:
+    - master
+  tags:
+    - protected
+
 image: node:latest
+
+variables:
+  GITLAB_BUILD_IMAGE_LATEST: label-creator:latest
 
 before_script:
   - npm i
@@ -6,6 +16,7 @@ before_script:
 stages:
   - lint
   - test
+  - build
 
 Lint:
   stage: lint
@@ -15,4 +26,13 @@ Lint:
 Test:
   stage: test
   script:
-    - yarn test --coverage --watchAll=false
+    - npm run test
+
+Build:
+  stage: build
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build .
+    - docker push $GITLAB_BUILD_IMAGE_LATEST
+  extends:
+    - .only-master

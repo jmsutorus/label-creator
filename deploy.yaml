@@ -1,0 +1,51 @@
+application:
+  name: labelCreator # Mandatory, global or general application name
+  serverGroup: 443 # Server group assigned to the application
+
+build:
+  type: nodejs # Type of build to execute, it can be java_war (default), java_war_ee, java_jar, angular, go, middleware, npm, scalaWar, scalaJar
+  nodeVersion: node 11.9.0
+  tool: manual # Tool that should be used to build, choose from gradle (default), maven, go, angular-cli, sbt (scala)
+  tasks: # Optional, Task for shell build script, for gradle and maven builds, if left undefined default will be -clean, if value is provided default will be overridden. Multiple values can be defined, each should be on a new line with a dash.
+    - npm run lint
+    - npm run test
+    - npm run build
+
+package:
+  type: rpm # How to package the app, choices are: rpm (default), docker, combined (rpm + docker, requires special definitions)
+  architecture: x86_64 # During publishing stage used to create rpm string for publishing to Nexus servers.  Default is noarch
+  style: full # Sets properties.package.template value, valid values are plain and full.  For build type java_war when plain use HEB_warBuilder_plain.spec.mu otherwise HEB_warBuilder.spec.mu.  For angular and angularJS when plain use HEB_ngBuilder_plain.spec.mu otherise HEB_ngBuilder.spec.mu.
+
+service:
+  name: label_creator # Mandatory, the name of the servicet to build and package
+  version: 1.0.0 # Mandatory, version assigned to the build
+  buildDir: build # Directory where the build artifact will be located after a successful build, defaults to 'build/libs'
+  tag: yes # Should the pipeline tag the git repo with the version plus the build number, defaults to 'yes'
+  startupFile: ./server/server.js # For use in NodeJS build.type. This will be using as a part of the startup script. This is the main js file for starting up the NodeJS service.
+
+environment:
+  - name: dev # Each environment element defines a deployment environment
+    isDev: yes
+    instances: # Only used for RPM packages, ignored otherwise, the list of servers (instances) where the package will be deployed
+      - w2dapl0042306.heb.com # Fully qualified server name
+    deployment: dashboard_agent
+    repository: heb-app-releases
+  - name: cert
+    instances:
+      - w2capl0042306.heb.com
+    deployment: dashboard_agent
+    repository: heb-app-releases
+
+registry:
+  - name: nexus2
+    host: nexus-repo.heb.com
+    type: nexus2
+    repository: releases
+
+release: # Each element defines a service release based on a git branch, every service will be suffixed (tagged) with the name of the release that corresponds to the branch, except for the 'prod' release which will not be suffixed at all, this is independent of the environment, hence an environment can be used to host many service releases (i.e. 'dev', 'dev2', 'int' service releases could all be on the 'dev' environment)
+  - prod:
+    branch: master # Name of the branch that is used to match this release
+  - cert:
+    branch: master
+  - dev:
+    branch: master

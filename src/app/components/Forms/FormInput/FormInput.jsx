@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]).isRequired,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };
