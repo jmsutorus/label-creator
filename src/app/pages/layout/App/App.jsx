@@ -30,7 +30,7 @@ function App({ store }) {
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/pdf" component={Pdf} />
+              <Route path="/pdf/:id" component={Pdf} />
               <Route component={NotFound} />
             </Switch>
           </Suspense>

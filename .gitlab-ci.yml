@@ -26,7 +26,7 @@ Lint:
 Test:
   stage: test
   script:
-    - yarn test --coverage --watchAll=false
+    - npm run test
 
 Build:
   stage: build

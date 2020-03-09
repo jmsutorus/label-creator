@@ -98,9 +98,9 @@ function BarcodeForm({ barcode }) {
                 databases
                   .filter(db => db.name === canvas.database)[0]
                   ?.tables.filter(tb => tb.name === canvas.table)[0]
-                  ?.fields.map(fd => (
-                    <option value={fd.name} key={fd.name}>
-                      {fd.name}
+                  ?.fieldNames.map(fd => (
+                    <option value={fd} key={fd}>
+                      {fd}
                     </option>
                   ))}
             </select>
