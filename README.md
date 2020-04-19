@@ -1,8 +1,8 @@
-# Media Master POC
+# Label Creator
 
 ---
 
-This is a Proof of Concept for Media Master.<br>
+Project to test Redux and generating PDFs.<br>
 Linting is done using eslint and follows airbnbs js and react style<br>
 Configure your favorite editor to follow the rules in .eslintrc.json<br>
 This project uses Redux for all state management<br>
@@ -13,7 +13,7 @@ This project uses Redux for all state management<br>
 
 Direct Contact<br>
 Joseph Sutorus<br>
-sutorus.joseph@heb.com
+jmsutorus@gmail.com
 
 ---
 
@@ -26,7 +26,7 @@ Must be on the H-E-B network connection either through wifi or through VPN.
 
 ## 🚀 Getting Started
 
-`git@gitlab.com:heb-engineering/teams/platform-engineering/app-dev-squad/media-master-poc-ui.git`<br>
+`https://github.com/jmsutorus/label-creator.git`<br>
 Download dependencies with `npm install`<br>
 Run the frontend code with `npm start`<br>
 Style guides can be found here<br>
