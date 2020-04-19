@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateBarcode, deleteBarcode } from '../../../store/actions/CanvasActions';
 import '../styles/styles.scss';
@@ -24,8 +24,6 @@ const propTypes = {
 const defaultProps = {};
 
 function BarcodeForm({ barcode }) {
-  const canvas = useSelector(state => state.CanvasReducer.canvas);
-  const databases = useSelector(state => state.DatabaseReducer.databaseResults);
   const dispatch = useDispatch();
 
   const handleChange = (target, value) => {
@@ -81,31 +79,6 @@ function BarcodeForm({ barcode }) {
           type="checkbox"
           onChange={handleChange}
         />
-        <div className="">
-          <label htmlFor="field" className="form-label">
-            <span id="field" className="form-name">
-              Field
-            </span>
-            <select
-              className="form-input"
-              placeholder="field"
-              value={barcode?.field || ''}
-              id="field"
-              onChange={e => handleChange('field', e.target.value)}
-            >
-              <option value="">Select Field</option>
-              {databases &&
-                databases
-                  .filter(db => db.name === canvas.database)[0]
-                  ?.tables.filter(tb => tb.name === canvas.table)[0]
-                  ?.fieldNames.map(fd => (
-                    <option value={fd} key={fd}>
-                      {fd}
-                    </option>
-                  ))}
-            </select>
-          </label>
-        </div>
       </form>
       <button type="button" className="label-button" onClick={() => handleDelete()}>
         Delete Property

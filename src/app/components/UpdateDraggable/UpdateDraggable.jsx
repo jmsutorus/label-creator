@@ -85,7 +85,9 @@ function UpdateDraggable({ id, x, y, width, height, zIndex, type, children }) {
       size={{ width, height }}
       position={{ x, y }}
       onDragStop={(e, d) => {
-        updatePositionState(d.x, d.y);
+        const snapX = Math.round(d.x / 10) * 10;
+        const snapY = Math.round(d.y / 10) * 10;
+        updatePositionState(snapX, snapY);
       }}
       onResize={(e, direction, ref, delta, position) => {
         updateSizeState(ref.offsetWidth, ref.offsetHeight);
@@ -93,6 +95,7 @@ function UpdateDraggable({ id, x, y, width, height, zIndex, type, children }) {
       }}
       bounds="parent"
       enableUserSelectHack={false}
+      dragGrid={[10, 10]}
     >
       {children}
     </Rnd>

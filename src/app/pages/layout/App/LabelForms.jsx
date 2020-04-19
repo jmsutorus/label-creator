@@ -2,9 +2,7 @@ import React from 'react';
 import './App.scss';
 import Properties from '../../../components/Forms/Properties';
 import CanvasForm from '../../../components/Forms/CanvasForm';
-import SaveLabel from '../../../components/SaveLabel';
 import GeneratePDF from '../../../components/GeneratePDF';
-import DeleteLabel from '../../../components/DeleteLabel';
 
 function LabelForms() {
   return (
@@ -21,12 +19,10 @@ function LabelForms() {
     >
       <div>
         <CanvasForm />
-        <SaveLabel />
         <Properties />
       </div>
       <div>
         <GeneratePDF />
-        <DeleteLabel />
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import FormInput from '../FormInput';
 
 function CanvasForm() {
   const canvas = useSelector(state => state.CanvasReducer.canvas);
-  const databases = useSelector(state => state.DatabaseReducer.databaseResults);
   const dispatch = useDispatch();
 
   const handleChange = (target, value) => {
@@ -43,52 +42,6 @@ function CanvasForm() {
         type="number"
         onChange={handleChange}
       />
-      <div className="">
-        <label htmlFor="database" className="form-label">
-          <span id="database" className="form-name">
-            Database
-          </span>
-          <select
-            className="form-input"
-            placeholder="database"
-            value={canvas?.database || ''}
-            id="database"
-            onChange={e => handleChange('database', e.target.value)}
-          >
-            <option value="">Select Database</option>
-            {databases &&
-              databases.map(db => (
-                <option value={db.name} key={db.name}>
-                  {db.name}
-                </option>
-              ))}
-          </select>
-        </label>
-      </div>
-      <div className="">
-        <label htmlFor="table" className="form-label">
-          <span id="table" className="form-name">
-            Table
-          </span>
-          <select
-            className="form-input"
-            placeholder="table"
-            value={canvas?.table || ''}
-            id="table"
-            onChange={e => handleChange('table', e.target.value)}
-          >
-            <option value="">Select Table</option>
-            {databases &&
-              databases
-                .filter(db => db.name === canvas.database)[0]
-                ?.tables.map(tb => (
-                  <option value={tb.name} key={tb.name}>
-                    {tb.name}
-                  </option>
-                ))}
-          </select>
-        </label>
-      </div>
     </div>
   );
 }

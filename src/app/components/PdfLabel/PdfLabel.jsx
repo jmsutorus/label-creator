@@ -29,30 +29,10 @@ const propTypes = {
 
 const defaultProps = {};
 
-function PdfLabel({ row, label }) {
+function PdfLabel({ label }) {
   const style = {
     height: `${label.height * 100}px`,
     width: `${label.width * 100}px`
-  };
-
-  const textBox = object => {
-    const text = row?.fields.filter(fd => fd.name === object.field)[0]?.value;
-    return text
-      ? {
-          ...object,
-          name: text
-        }
-      : object;
-  };
-
-  const barcode = object => {
-    const text = row?.fields.filter(fd => fd.name === object.field)[0]?.value;
-    return text
-      ? {
-          ...object,
-          name: text
-        }
-      : object;
   };
 
   return (
@@ -66,7 +46,7 @@ function PdfLabel({ row, label }) {
             height={object.height * 100}
             key={object.id}
           >
-            <Textbox textBox={textBox(object)} />
+            <Textbox textBox={object} />
           </LabelWrapper>
         ))}
       {label.rectangles &&
@@ -90,7 +70,7 @@ function PdfLabel({ row, label }) {
             height={object.height * 100}
             key={object.id}
           >
-            <Barcode barcode={barcode(object)} />
+            <Barcode barcode={object} />
           </LabelWrapper>
         ))}
     </div>

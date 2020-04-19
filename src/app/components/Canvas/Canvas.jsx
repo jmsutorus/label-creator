@@ -7,6 +7,7 @@ import Rectangle from '../LabelObjects/Rectangle';
 import Textbox from '../LabelObjects/Textbox';
 import WithInspector from '../WithInspector';
 import Barcode from '../LabelObjects/Barcode';
+import SnapGrid from '../SnapGrid';
 import './Canvas.scss';
 
 function Canvas() {
@@ -39,6 +40,7 @@ function Canvas() {
       style={{ flex: 1, height: '600px', backgroundColor: '#E8E8E8', position: 'relative' }}
     >
       <div ref={drop} style={{ ...style, backgroundColor }} className="canvas">
+        <SnapGrid />
         {canvas.textboxes &&
           canvas.textboxes.map(object => (
             <UpdateDraggable

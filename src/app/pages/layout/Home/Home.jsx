@@ -5,7 +5,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Tools from '../../../components/Tools';
 import Canvas from '../../../components/Canvas';
-import LabelsList from '../../../components/LabelsList';
 import LabelForms from '../App/LabelForms';
 
 function Home() {
@@ -19,7 +18,6 @@ function Home() {
             <Canvas />
             <LabelForms />
           </div>
-          <LabelsList />
         </DndProvider>
       </main>
       <Footer />

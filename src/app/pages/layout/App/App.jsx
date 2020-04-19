@@ -2,8 +2,6 @@ import React, { lazy, StrictMode, Suspense } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './App.scss';
-import { getLabels } from '../../../store/actions/LabelActions';
-import { getDatabases } from '../../../store/actions/DatabaseActions';
 import AppProvider from '../../../contexts/AppProvider';
 
 const NotFound = lazy(() => import('../NotFound'));
@@ -21,8 +19,6 @@ const propTypes = {
 const defaultProps = {};
 
 function App({ store }) {
-  store.dispatch(getLabels());
-  store.dispatch(getDatabases());
   return (
     <AppProvider store={store}>
       <StrictMode>
